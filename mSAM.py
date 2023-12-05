@@ -5,7 +5,7 @@ import time
 from torchvision.ops import box_convert
 
 model = load_model("GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py", "GroundingDINO/weights/groundingdino_swint_ogc.pth", device='cpu')
-img_num = 12
+img_num = 5
 IMAGE_PATH = f"cube_pics/{img_num}.jpg"
 TEXT_PROMPT = "Rubik's Cube"
 BOX_TRESHOLD = 0.35
