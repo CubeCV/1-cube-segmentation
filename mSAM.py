@@ -46,12 +46,6 @@ image_pil = Image.open(IMAGE_PATH).convert("RGB")
 predictor = SamPredictor(mobile_sam)
 predictor.set_image(image_rgb)
 
-# xywh[0] *= image_pil.size[0]
-# xywh[1] *= image_pil.size[1]
-# xywh[2] *= image_pil.size[0]
-# xywh[3] *= image_pil.size[1]
-# box = xywh
-# print(box)
 xyxy[0] *= image_pil.size[0]
 xyxy[1] *= image_pil.size[1]
 xyxy[2] *= image_pil.size[0]
@@ -63,10 +57,11 @@ start = time.time()
 masks, _, _ = predictor.predict(box=box, multimask_output=False)
 print("mSAM INF:", time.time() - start)
 
-# for i in range(image_pil.size[0]):
-#     for j in range(image_pil.size[1]):
-#         if not masks[0][j][i] == 1:
-#             image_pil.putpixel((i,j), (0,0,0))
+for i in range(image_pil.size[0]):
+    for j in range(image_pil.size[1]):
+        if not masks[0][j][i] == 1:
+            image_pil.putpixel((i,j), (0,0,0))
+
 def show_mask(mask, ax):
     color = np.array([30/255, 144/255, 255/255, 0.6])
     h, w = mask.shape[-2:]
@@ -79,6 +74,8 @@ cv2.imwrite("annotated_image.jpg", annotated_frame)
 
 
 f, axarr = plt.subplots(2+len(masks),1)
+
+image_pil.save("isolated_cube.jpg")
 
 axarr[0].imshow(image_pil)
 axarr[1].imshow(annotated_frame)
