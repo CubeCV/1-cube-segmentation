@@ -5,7 +5,8 @@ import time
 from torchvision.ops import box_convert
 
 model = load_model("GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py", "GroundingDINO/weights/groundingdino_swint_ogc.pth", device='cpu')
-IMAGE_PATH = "cube_pics/5.jpg"
+img_num = 12
+IMAGE_PATH = f"cube_pics/{img_num}.jpg"
 TEXT_PROMPT = "Rubik's Cube"
 BOX_TRESHOLD = 0.35
 TEXT_TRESHOLD = 0.25
@@ -75,7 +76,7 @@ cv2.imwrite("annotated_image.jpg", annotated_frame)
 
 f, axarr = plt.subplots(2+len(masks),1)
 
-image_pil.save("isolated_cube.jpg")
+image_pil.save(f"isolated_cubes/isolated_cube{img_num}.jpg")
 
 axarr[0].imshow(image_pil)
 axarr[1].imshow(annotated_frame)
