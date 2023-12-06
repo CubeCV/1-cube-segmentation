@@ -4,7 +4,7 @@ import supervision as sv
 import numpy as np
 
 model = LangSAM()
-image_pil = Image.open("original/1.jpg").convert("RGB")
+image_pil = Image.open("../images/original/1.jpg").convert("RGB")
 image_pil = image_pil.resize((300, 300))
 text_prompt = "Rubik's Cube"
 # sv.plot_image(np.array(image_pil), size=(16,16))

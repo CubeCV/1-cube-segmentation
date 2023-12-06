@@ -12,7 +12,7 @@ from groundingdino.util.inference import load_model, load_image, predict, annota
 model = load_model("GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py", "GroundingDINO/weights/groundingdino_swint_ogc.pth", device='cpu')
 img_num = 5
 
-IMAGE_PATH = f"original/{img_num}.jpg"
+IMAGE_PATH = f"../images/original/{img_num}.jpg"
 TEXT_PROMPT = "Rubik's Cube"
 BOX_TRESHOLD = 0.35
 TEXT_TRESHOLD = 0.25
@@ -80,7 +80,7 @@ cv2.imwrite("annotated_image.jpg", annotated_frame)
 
 f, axarr = plt.subplots(2 + len(masks), 1)
 
-image_pil.save(f"isolated/{img_num}.jpg")
+image_pil.save(f"../images/isolated/{img_num}.jpg")
 
 axarr[0].imshow(image_pil)
 axarr[1].imshow(annotated_frame)
